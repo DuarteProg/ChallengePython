@@ -2,7 +2,7 @@ from fastapi import FastAPI, BackgroundTasks, HTTPException
 from pydantic import BaseModel
 from extract import *
 import os
-import railway
+
 
 
 SECRET = os.getenv("SECRET")
@@ -25,8 +25,11 @@ async def demo_get():
     driver=createDriver()
 
     homepage = getGoogleHomepage(driver)
+
     driver.close()
     return homepage
+
+
 
 @app.post("/backgroundDemo")
 async def demo_post(inp: Msg, background_tasks: BackgroundTasks):
